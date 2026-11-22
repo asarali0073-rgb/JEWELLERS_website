@@ -1,0 +1,20 @@
+{
+  "name": "amir-jewellers",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install --prefix frontend && npm install --prefix api-gateway && npm install --prefix services/auth-service && npm install --prefix services/product-service && npm install --prefix services/gold-rate-service",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:gateway": "npm run dev --prefix api-gateway",
+    "dev:auth": "npm run dev --prefix services/auth-service",
+    "dev:products": "npm run dev --prefix services/product-service",
+    "dev:rates": "npm run dev --prefix services/gold-rate-service",
+    "dev:all": "node scripts/dev-all.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "mongodb": "^7.8.0",
+    "mongoose": "^9.11.4"
+  }
+}

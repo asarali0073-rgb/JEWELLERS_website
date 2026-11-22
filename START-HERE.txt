@@ -1,0 +1,22 @@
+AMIR JEWELLERS — QUICK START
+
+1. Install Node.js 20+.
+2. Open this project folder in VS Code.
+3. In root terminal run: npm run install:all
+4. Copy each .env.example to .env in that same directory and configure each service's MongoDB Atlas MONGODB_URI.
+5. Set the SAME strong JWT_SECRET in these three service .env files:
+   services/auth-service/.env
+   services/product-service/.env
+   services/gold-rate-service/.env
+6. Set a private OWNER_EMAIL and OWNER_PASSWORD (at least 16 characters) in services/auth-service/.env, then create the first admin:
+   npm run create-admin --prefix services/auth-service
+7. Open five terminals at project root and run one command in each:
+   npm run dev:auth
+   npm run dev:products
+   npm run dev:rates
+   npm run dev:gateway
+   npm run dev:frontend
+8. Visit http://localhost:5173
+
+Add real shop details and Maps link in frontend/.env.
+See MONGODB_SETUP.md for Atlas access, data migration, and verification instructions.
