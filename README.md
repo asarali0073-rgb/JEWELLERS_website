@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AMIR JEWELLERS — React + Node.js Microservices
 
 React/Vite frontend, Express API Gateway, and three Node.js services:
@@ -50,3 +51,7 @@ Add real shop address, phone and Maps URL in `frontend/.env`.
 Current features: gold-only catalogue, product details, manual 24K/22K/21K rates, owner login, protected admin overview at `/admin`, product management at `/admin/products`, and rate management at `/admin/gold-rates`. Public pages include `/`, `/collection`, `/product/:id`, `/gold-rates`, `/about`, and `/contact`. No order service, checkout or payment system.
 
 Admins can add product photos from a computer or phone in `/admin/products`. Product Service validates images and stores them locally without third-party credentials. See [MONGODB_SETUP.md](./MONGODB_SETUP.md) for image storage and LAN/mobile testing details.
+=======
+# JEWELLERS_website
+A premium luxury jewellery e-commerce website built with React, Node.js, Express.js, MongoDB, and microservices architecture. Features include product management, secure authentication, dynamic gold rates, and a responsive shopping experience.
+>>>>>>> 6593728f7094da93294dbc135051df44fe03ef25
