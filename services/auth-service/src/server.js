@@ -123,9 +123,11 @@ try {
   if (!process.env.JWT_SECRET)
     throw new Error("JWT_SECRET is required.");
   await connectDatabase();
-  server = app.listen(port, () =>
-    console.log(`Auth Service running on port ${port}`),
-  );
+  const onListening = () =>
+    console.log(`Auth Service running on port ${port}`);
+  server = process.env.HOST
+    ? app.listen(port, process.env.HOST, onListening)
+    : app.listen(port, onListening);
   server.on("error", (error) => {
     console.error(
       error.code === "EADDRINUSE"

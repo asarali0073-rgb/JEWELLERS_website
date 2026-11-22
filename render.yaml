@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: amir-jewellers-backend
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm ci --prefix api-gateway && npm ci --prefix services/auth-service && npm ci --prefix services/product-service && npm ci --prefix services/gold-rate-service
+    startCommand: node scripts/production.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: AUTH_MONGODB_URI
+        sync: false
+      - key: PRODUCT_MONGODB_URI
+        sync: false
+      - key: GOLD_RATE_MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: OWNER_EMAIL
+        sync: false
+      - key: OWNER_PASSWORD
+        sync: false

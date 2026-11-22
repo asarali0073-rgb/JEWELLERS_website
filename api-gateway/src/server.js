@@ -122,9 +122,11 @@ app.use((_req, res) => res.status(404).json({ message: "Gateway route not found.
 
 const port = Number(process.env.PORT || 5000);
 const startServer = (serverPort) => {
-  const server = app.listen(serverPort, () =>
-    console.log(`API Gateway running on port ${serverPort}`),
-  );
+  const onListening = () =>
+    console.log(`API Gateway running on port ${serverPort}`);
+  const server = process.env.HOST
+    ? app.listen(serverPort, process.env.HOST, onListening)
+    : app.listen(serverPort, onListening);
 
   server.on("error", (error) => {
     if (error.code === "EADDRINUSE") {
