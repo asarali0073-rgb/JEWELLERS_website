@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "frontend": { "root": "frontend", "framework": "vite" },
+    "api-gateway": {
+      "root": "api-gateway",
+      "framework": "express",
+      "bindings": [
+        { "type": "service", "service": "auth-service", "format": "url", "env": "AUTH_URL" },
+        { "type": "service", "service": "product-service", "format": "url", "env": "PRODUCT_URL" },
+        { "type": "service", "service": "gold-rate-service", "format": "url", "env": "GOLD_RATE_URL" }
+      ]
+    },
+    "auth-service": { "root": "services/auth-service", "framework": "express" },
+    "gold-rate-service": { "root": "services/gold-rate-service", "framework": "express" },
+    "product-service": {
+      "root": "services/product-service",
+      "framework": "express",
+      "bindings": [
+        { "type": "service", "service": "gold-rate-service", "format": "url", "env": "GOLD_RATE_URL" }
+      ]
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": { "service": "api-gateway" } },
+    { "source": "/(.*)", "destination": { "service": "frontend" } }
+  ]
+}

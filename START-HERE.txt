@@ -3,7 +3,7 @@ AMIR JEWELLERS — QUICK START
 1. Install Node.js 20+.
 2. Open this project folder in VS Code.
 3. In root terminal run: npm run install:all
-4. Copy each .env.example to .env in that same directory and configure each service's MongoDB Atlas MONGODB_URI.
+4. Copy each .env.example to .env in that same directory and configure each service's MongoDB Atlas MONGO_URI.
 5. Set the SAME strong JWT_SECRET in these three service .env files:
    services/auth-service/.env
    services/product-service/.env

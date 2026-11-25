@@ -7,9 +7,9 @@ import rateLimit from "express-rate-limit";
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
-const authTarget = process.env.AUTH_SERVICE_URL || "http://localhost:5001";
-const productTarget = process.env.PRODUCT_SERVICE_URL || "http://localhost:5002";
-const goldRateTarget = process.env.GOLD_RATE_SERVICE_URL || "http://localhost:5003";
+const authTarget = process.env.AUTH_URL || "http://localhost:5001";
+const productTarget = process.env.PRODUCT_URL || "http://localhost:5002";
+const goldRateTarget = process.env.GOLD_RATE_URL || "http://localhost:5003";
 const dependencies = {
   auth: authTarget,
   products: productTarget,
@@ -28,7 +28,7 @@ async function checkDependency(target) {
 }
 
 app.use(helmet());
-app.use(cors({ origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173" }));
+if (process.env.NODE_ENV !== "production") app.use(cors());
 app.use(morgan("dev"));
 app.use(
   rateLimit({
@@ -120,25 +120,9 @@ app.use(
 
 app.use((_req, res) => res.status(404).json({ message: "Gateway route not found." }));
 
-const port = Number(process.env.PORT || 5000);
-const startServer = (serverPort) => {
-  const onListening = () =>
-    console.log(`API Gateway running on port ${serverPort}`);
-  const server = process.env.HOST
-    ? app.listen(serverPort, process.env.HOST, onListening)
-    : app.listen(serverPort, onListening);
+if (process.env.NODE_ENV !== "production") {
+  const port = Number(process.env.PORT || 5000);
+  app.listen(port, () => console.log(`API Gateway running on port ${port}`));
+}
 
-  server.on("error", (error) => {
-    if (error.code === "EADDRINUSE") {
-      console.error(
-        `API Gateway failed to start: port ${serverPort} is already in use. Stop the existing process or set a different PORT in .env.`,
-      );
-      process.exit(1);
-    }
-
-    console.error("API Gateway failed to start:", error);
-    process.exit(1);
-  });
-};
-
-startServer(port);
+export default app;

@@ -22,7 +22,7 @@ Copy each `.env.example` to `.env` in the same folder:
 - `services/gold-rate-service/.env.example` -> `services/gold-rate-service/.env`
 - `frontend/.env.example` -> `frontend/.env`
 
-Configure each service's `MONGODB_URI`, and set the same long random `JWT_SECRET` in auth, product and gold-rate service `.env` files. Set a private `OWNER_EMAIL` and `OWNER_PASSWORD` in the auth service `.env`, then create the first account once:
+Configure each database-backed service's `MONGO_URI`, and set the same long random `JWT_SECRET` in auth, product and gold-rate service `.env` files. Set a private `OWNER_EMAIL` and `OWNER_PASSWORD` in the auth service `.env`, then create the first account once:
 
 ```bash
 npm run create-admin --prefix services/auth-service

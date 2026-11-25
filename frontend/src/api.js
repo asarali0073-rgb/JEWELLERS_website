@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_API_BASE_URL || "/api";
+const API = "/api";
 
 export function token() {
   return localStorage.getItem("amir_owner_token") || "";

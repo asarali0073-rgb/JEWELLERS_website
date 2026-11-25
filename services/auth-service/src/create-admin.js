@@ -31,7 +31,7 @@ try {
     console.error("Initial administrator setup failed:", error.message);
   } else {
     console.error(
-      "Initial administrator setup failed; check MONGODB_URI, JWT_SECRET, and Atlas access.",
+      "Initial administrator setup failed; check MONGO_URI, JWT_SECRET, and Atlas access.",
     );
     console.error(error.name || "Error");
   }

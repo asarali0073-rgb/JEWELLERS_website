@@ -43,7 +43,7 @@ export function databaseErrorDetails(error) {
         : networkFailure
           ? "MongoDB nodes are unreachable. Check Atlas network access allowlists, outbound firewall rules, and cluster status."
           : error?.name === "MongooseServerSelectionError"
-            ? "Mongoose could not select a MongoDB server. Verify Atlas cluster status, network access, and the service-specific MONGODB_URI."
+            ? "Mongoose could not select a MongoDB server. Verify Atlas cluster status, network access, and the service-specific MONGO_URI."
             : undefined;
 
   return {

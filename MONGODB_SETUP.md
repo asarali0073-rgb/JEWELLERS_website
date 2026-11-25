@@ -12,7 +12,7 @@ Each service connects to Atlas using Mongoose and selects its own database:
 
 1. In Atlas, create a database user with access to these databases and add the development/deployment machine's IP to the network access list.
 2. Copy each service's `.env.example` to `.env` in that same service folder.
-3. Set `MONGODB_URI` to the Atlas connection string in each `.env`. Use the database name shown above in each URI; the service also selects its database explicitly. Preserve Atlas query options such as `retryWrites=true&w=majority`.
+3. Set `MONGO_URI` to the Atlas connection string in each `.env`. The service selects its database explicitly. Preserve Atlas query options such as `retryWrites=true&w=majority`.
 4. URL-encode special characters in the database user's username or password.
 5. Set the same strong, randomly generated `JWT_SECRET` in all three services. Never use a published example value.
 6. In `services/auth-service/.env`, set a unique `OWNER_EMAIL` and `OWNER_PASSWORD` of at least 16 characters. These variables are only used by the explicit administrator setup command; they do not create an account during service startup.
@@ -36,7 +36,7 @@ npm run install:all
 npm run create-admin --prefix services/auth-service
 ```
 
-The admin command creates one bcrypt-hashed owner account and refuses to replace an account with the same email. To add the first admin, configure `MONGODB_URI`, `JWT_SECRET`, `OWNER_EMAIL`, and `OWNER_PASSWORD` in the auth service `.env` first. Do not copy the old demo password into production.
+The admin command creates one bcrypt-hashed owner account and refuses to replace an account with the same email. To add the first admin, configure `MONGO_URI`, `JWT_SECRET`, `OWNER_EMAIL`, and `OWNER_PASSWORD` in the auth service `.env` first. Do not copy the old demo password into production.
 
 Start each process in a separate terminal at the repository root:
 
